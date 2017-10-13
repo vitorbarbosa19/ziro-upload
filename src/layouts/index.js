@@ -8,14 +8,14 @@ import './index.css'
 const Header = () => (
   <div
     style={{
-      background: 'rebeccapurple',
+      background: '#364657',
       marginBottom: '1.45rem',
     }}
   >
     <div
       style={{
         margin: '0 auto',
-        maxWidth: 960,
+        maxWidth: 400,
         padding: '1.45rem 1.0875rem',
       }}
     >
@@ -23,11 +23,11 @@ const Header = () => (
         <Link
           to="/"
           style={{
-            color: 'white',
+            color: '#FFD807',
             textDecoration: 'none',
           }}
         >
-          Gatsby
+          ZIRO
         </Link>
       </h1>
     </div>
@@ -37,17 +37,20 @@ const Header = () => (
 const TemplateWrapper = ({ children }) => (
   <div>
     <Helmet
-      title="Gatsby Default Starter"
+      title="Ziro Upload"
       meta={[
-        { name: 'description', content: 'Sample' },
-        { name: 'keywords', content: 'sample, something' },
+        { name: 'description', content: 'Upload de images para catalogo online' },
+        { name: 'keywords', content: 'atacado, bom retiro, moda' },
+      ]}
+      script={[
+        { src: '//widget.cloudinary.com/global/all.js', type: 'text/javascript' }
       ]}
     />
     <Header />
     <div
       style={{
         margin: '0 auto',
-        maxWidth: 960,
+        maxWidth: 400,
         padding: '0px 1.0875rem 1.45rem',
         paddingTop: 0,
       }}
