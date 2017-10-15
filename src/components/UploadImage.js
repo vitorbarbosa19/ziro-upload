@@ -1,62 +1,48 @@
 import React from 'react'
+import { Image } from 'cloudinary-react'
+import Spinner from './Spinner'
+import {
+	containerStyle,
+	buttonStyle,
+	inputStyle,
+	successAlertActive,
+	successAlertInactive
+} from './styles/styles'
 
-const containerStyle = {
-	'height': '70vh',
-	'display': 'flex',
-	'flexDirection': 'column',
-	'justifyContent': 'center',
-	'alignItems': 'center'
-}
-
-const buttonStyle = {
-	'padding': '10px 25px',
-	'border-radius': '25px',
-	'background-color': '#303e4d',
-	'color': '#fff',
-	'zIndex': '0'
-}
-
-const inputStyle = {
-	'width': '80%',
-	'text-align': 'center',
-	'margin-bottom': '10px',
-	'padding': '10px',
-	'border-radius': '3px',
-	'border': '2px solid rgba(48, 62, 77, 0.7)',
-	'zIndex': '0'
-}
-
-const successAlertActive = {
-	'display': 'block',
-	'position': 'absolute',
-	'zIndex': '1',
-	'padding': '10%',
-	'borderRadius': '3px',
-	'background-color': '#C5E99B',
-	'color': '#fff',
-	'opacity': '1',
-	'transition': 'all 0.6s ease-in-out'
-}
-
-const successAlertInactive = {
-	'opacity': '0'
-}
+const allBrands = [
+  'Luzia Fazzolli',
+  'Di Collani',
+  'Unique Chic',
+  'Nuxx',
+  'Donna Ritz',
+  'Blessed',
+  'Innocense',
+  'Ave Rara',
+  'Karmani',
+  'Amissima',
+  'Lovlity',
+  'Linny',
+  'Hush',
+  'Loubucca',
+  'Champagne',
+  'Muse'
+]
 
 export default class UploadImage extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = { 
-			marca: '',
+			brand: '',
 			isImgModalOpen: false,
 			uploadSuccess: false
 		}
 		this.uploadImg = this.uploadImg.bind(this)
-		this.salvarMarca = this.salvarMarca.bind(this)
+		this.selectBrand = this.selectBrand.bind(this)
 	}
 	uploadImg(event) {
 		event.preventDefault()
-		if(this.state.marca === '')
-			alert('Coloque o nome da marca')
+		if(this.state.brand === 'Escolha uma marca' || this.state.brand === '')
+			alert('Escolha uma marca da lista')
 		else {
 			this.setState({
 				isImgModalOpen: true
@@ -64,14 +50,13 @@ export default class UploadImage extends React.Component {
 			cloudinary.openUploadWidget({
 				cloud_name: 'ziro',
 				upload_preset: 'default',
-				tags: [this.state.marca],
-				folder: this.state.marca,
+				tags: [this.state.brand.toLowerCase()],
 				theme: 'minimal'
 			},
 				result => {
 					if(result === null)
 						this.setState({
-							marca: '',
+							brand: '',
 							uploadSuccess: true
 						})
 					this.setState({
@@ -81,19 +66,37 @@ export default class UploadImage extends React.Component {
 			)
 		}
 	}
-	salvarMarca(event) {
+	selectBrand(event) {
 		this.setState({
-			marca: event.target.value
+			brand: event.target.value
 		})
 	}
 	render() {
 		return (
 		  <span>
-		  	{this.state.isImgModalOpen ? <div className='main-container' style={containerStyle}>Loading...</div> :
+		  	{this.state.isImgModalOpen ? <div className='main-container' style={containerStyle}><Spinner /></div> :
 		  		<div style={containerStyle}>
 		  			{/*<div style={this.state.uploadSuccess ? successAlertActive : successAlertInactive}>Upload realizado com sucesso</div>*/}
-		  			<img style={{ 'maxWidth': '15%' }} src='https://res.cloudinary.com/ziro/image/upload/s--1-aamUA2--/v1507872043/upload-icon_wgq6yp.png' />
-		  			<input style={inputStyle} type='text' value={this.state.marca} onChange={this.salvarMarca} placeholder='Upload para qual marca?' />
+			      <Image
+			        cloudName='ziro'
+			        width='80' 
+			        publicId='upload-icon_wgq6yp'
+			        version='1507872043'
+			        format='png'
+			        secure='true'
+			      />
+		  			<select style={inputStyle} onChange={this.selectBrand}>
+		  				<option>Escolha uma marca</option>
+			  			{allBrands.sort().map( (brandName, index) => {
+			  				return (
+			  					<option
+			  						key={index}
+			  						value={brandName}
+			  						>{brandName}
+			  					</option>
+			  				)
+			  			})}
+		  			</select>
 		  			<a style={buttonStyle} href='#' onClick={this.uploadImg}>Iniciar upload de imagens</a>
 		  		</div>
 		  	}

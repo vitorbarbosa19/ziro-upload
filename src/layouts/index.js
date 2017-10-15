@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
+import { Image } from 'cloudinary-react'
 
 import './index.css'
 
@@ -10,26 +11,22 @@ const Header = () => (
     style={{
       background: '#364657',
       marginBottom: '1.45rem',
-    }}
-  >
+    }}>
     <div
       style={{
         margin: '0 auto',
         maxWidth: 400,
         padding: '1.45rem 1.0875rem',
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: '#FFD807',
-            textDecoration: 'none',
-          }}
-        >
-          ZIRO
-        </Link>
-      </h1>
+      }}>
+      <Image
+        style={{margin: '0'}}
+        cloudName='ziro' 
+        width='120' 
+        publicId='logo-original_lork1u'
+        version='1508000699'
+        format='png'
+        secure='true'
+      />
     </div>
   </div>
 )

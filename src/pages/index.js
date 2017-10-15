@@ -1,8 +1,8 @@
 import React from 'react'
 import UploadImage from '../components/UploadImage'
 
-const IndexPage = () => (
+const Upload = () => (
  	<UploadImage />
 )
 
-export default IndexPage
+export default Upload
