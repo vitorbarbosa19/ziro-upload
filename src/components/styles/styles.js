@@ -28,22 +28,40 @@ export const inputStyle = {
 	border: '2px solid rgba(48, 62, 77, 0.7)',
 	zIndex: '0',
 	backgroundColor: '#fff',
-	color: 'rgba(48, 62, 77, 0.75)',
+	color: 'rgba(48, 62, 77, 0.95)',
 	boxShadow: '0px 2px 6px 0px rgba(0,0,0,0.1), 0px 2px 6px 0px rgba(0,0,0,0.1)'
 }
 
-export const successAlertActive = {
-	'display': 'block',
-	'position': 'absolute',
-	'zIndex': '1',
-	'padding': '10%',
-	'borderRadius': '3px',
-	'backgroundColor': '#C5E99B',
-	'color': '#fff',
-	'opacity': '1',
-	'transition': 'all 0.6s ease-in-out'
+export const overlayAlertDialog = {
+	pointerEvents: 'none', //makes the elements below this div clickable
+	display: 'flex',
+	justifyContent: 'center',
+	position: 'absolute',
+	top: '0',
+	width: '100%',
+	height: '100%',
+	backgroundColor: 'rgba(0,0,0,0.4)',
+	zIndex: '1',
+	opacity: '0',
+	transition: 'all 0.6s ease',
 }
 
-export const successAlertInactive = {
-	'opacity': '0'
+export const uploadAlertDialog = {
+	display: 'flex',
+	flexDirection: 'column',
+	alignItems: 'center',
+	position: 'absolute',
+	top: '50%',
+	left: '0',
+	margin: '-127px 30px 0', //half the size of the element, after including borders and padding
+	zIndex: '1',
+	padding: '60px 30px',
+  borderRadius: '3px',
+	backgroundColor: '#FFF',
+	color: '#303E4D',
+	fontSize: '21px',
+	fontWeight: '600',
+	textAlign: 'center',
+	transition: 'all 0.6s ease-in-out',
+	boxShadow: '0px 2px 6px 0px rgba(0,0,0,0.1), 0px 2px 6px 0px rgba(0,0,0,0.1)'
 }

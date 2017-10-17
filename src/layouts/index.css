@@ -6,6 +6,22 @@ a {
   color: #333;
 }
 
+.overlay-alert-active {
+  opacity: 1 !important;
+}
+
+.overlay-alert-inactive {
+  opacity: 0 !important;
+}
+
+.text-alert-active {
+  left: 0 !important;
+}
+
+.text-alert-inactive {
+  left: -3000px !important;
+}
+
 /*************************/
 /*************************/
 

@@ -5,8 +5,8 @@ import {
 	containerStyle,
 	buttonStyle,
 	inputStyle,
-	successAlertActive,
-	successAlertInactive
+	overlayAlertDialog,
+	uploadAlertDialog
 } from './styles/styles'
 
 const allBrands = [
@@ -25,7 +25,9 @@ const allBrands = [
   'Hush',
   'Loubucca',
   'Champagne',
-  'Muse'
+  'Muse',
+  'Doce Flor',
+  'Morina'
 ]
 
 export default class UploadImage extends React.Component {
@@ -34,13 +36,16 @@ export default class UploadImage extends React.Component {
 		this.state = { 
 			brand: '',
 			isImgModalOpen: false,
-			uploadSuccess: false
+			uploadSuccess: false,
+			defaultOption: 'Escolha uma marca',
+			uploadMsg: ''
 		}
 		this.uploadImg = this.uploadImg.bind(this)
 		this.selectBrand = this.selectBrand.bind(this)
+		this.userUploadError = this.userUploadError.bind(this)
+		this.userUploadSuccess = this.userUploadSuccess.bind(this)
 	}
-	uploadImg(event) {
-		event.preventDefault()
+	uploadImg() {
 		if(this.state.brand === 'Escolha uma marca' || this.state.brand === '')
 			alert('Escolha uma marca da lista')
 		else {
@@ -53,22 +58,56 @@ export default class UploadImage extends React.Component {
 				tags: [this.state.brand.toLowerCase()],
 				theme: 'minimal'
 			},
-				result => {
-					if(result === null)
-						this.setState({
-							brand: '',
-							uploadSuccess: true
-						})
-					this.setState({
-						isImgModalOpen: false
-					})
+				(error, result) => {
+					if(error) {
+						this.userUploadError(error.message)
+					}
+					else {
+						this.userUploadSuccess()
+					}
 				}
 			)
 		}
 	}
+	userUploadError(errorMsg) { //creating separate methods to make sure setState is called only once. Was getting console error of callback calling setState multiple times
+		if(this.state.isImgModalOpen) {
+			if(errorMsg === 'User closed widget') {
+				this.setState({
+					uploadSuccess: false,
+					isImgModalOpen: false,
+					defaultOption: this.state.brand,
+				})				
+			}
+			else {
+				this.setState({
+					uploadSuccess: false,
+					isImgModalOpen: false,
+					defaultOption: this.state.brand,
+					uploadMsg: 'Ocorreu um erro no upload'
+				})
+			}
+		}
+	}
+	userUploadSuccess() {
+		if(this.state.isImgModalOpen) {	
+			this.setState({
+				brand: '',
+				uploadSuccess: true,
+				uploadMsg: 'Upload realizado com sucesso!',
+				isImgModalOpen: false
+			})
+			document.getElementById('text-alert-dialog').classList.add('text-alert-active')
+			document.getElementById('overlay-alert-dialog').classList.add('overlay-alert-active')
+			window.setTimeout( () => {
+				document.getElementById('text-alert-dialog').classList.add('text-alert-inactive')
+				document.getElementById('overlay-alert-dialog').classList.add('overlay-alert-inactive')
+			}, 3000)
+		}
+	}
 	selectBrand(event) {
 		this.setState({
-			brand: event.target.value
+			brand: event.target.value,
+			defaultOption: 'Escolha uma marca'
 		})
 	}
 	render() {
@@ -76,7 +115,6 @@ export default class UploadImage extends React.Component {
 		  <span>
 		  	{this.state.isImgModalOpen ? <div className='main-container' style={containerStyle}><Spinner /></div> :
 		  		<div style={containerStyle}>
-		  			{/*<div style={this.state.uploadSuccess ? successAlertActive : successAlertInactive}>Upload realizado com sucesso</div>*/}
 			      <Image
 			        cloudName='ziro'
 			        width='80' 
@@ -86,7 +124,7 @@ export default class UploadImage extends React.Component {
 			        secure='true'
 			      />
 		  			<select style={inputStyle} onChange={this.selectBrand}>
-		  				<option>Escolha uma marca</option>
+		  				<option>{this.state.defaultOption}</option>
 			  			{allBrands.sort().map( (brandName, index) => {
 			  				return (
 			  					<option
@@ -98,6 +136,30 @@ export default class UploadImage extends React.Component {
 			  			})}
 		  			</select>
 		  			<a style={buttonStyle} href='#' onClick={this.uploadImg}>Iniciar upload de imagens</a>
+		  			<div style={overlayAlertDialog} id='overlay-alert-dialog'>
+		  				<div style={uploadAlertDialog} id='text-alert-dialog'>
+			  				{this.state.uploadMsg === 'Upload realizado com sucesso!' ?	
+			  					<Image
+										cloudName='ziro'
+				        		width='65' 
+				        		publicId='ok-icon_bskbxm'
+						        version='1508212647'
+						        format='png'
+						        secure='true'	
+			  					/>
+			  					:
+			  					<Image
+										cloudName='ziro'
+				        		width='65' 
+				        		publicId='error-icon_dqsgnx'
+						        version='1508212649'
+						        format='png'
+						        secure='true'	
+			  					/>
+			  				}
+			  					{this.state.uploadMsg}
+		  				</div>
+		  			</div>
 		  		</div>
 		  	}
 		  </span>
