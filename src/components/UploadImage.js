@@ -56,7 +56,28 @@ export default class UploadImage extends React.Component {
 				cloud_name: 'ziro',
 				upload_preset: 'default',
 				tags: [this.state.brand.toLowerCase()],
-				theme: 'minimal'
+				theme: 'minimal',
+				stylesheet: `
+					#cloudinary-widget .panel {
+						height: 100vh !important;
+					}
+					#cloudinary-navbar .source.active {
+						border-bottom: 3px solid #303E4D !important;
+					}
+					#cloudinary-widget .button {
+						font-size: 18px !important;
+						border-radius: 25px !important;
+						color: #FFF !important;
+						background-color: #303E4D !important;
+						border: 2px solid #303E4D !important;
+					}
+					.widget .panel.local .drag_area .drag_content {
+						margin-top: 70% !important;
+					}
+					.widget .powered_by_cloudinary {
+						display: none !important;
+					}
+				`
 			},
 				(error, result) => {
 					if(error) {
@@ -141,7 +162,7 @@ export default class UploadImage extends React.Component {
 			  				{this.state.uploadMsg === 'Upload realizado com sucesso!' ?	
 			  					<Image
 										cloudName='ziro'
-				        		width='65' 
+				        		width='40' 
 				        		publicId='ok-icon_bskbxm'
 						        version='1508212647'
 						        format='png'
@@ -150,7 +171,7 @@ export default class UploadImage extends React.Component {
 			  					:
 			  					<Image
 										cloudName='ziro'
-				        		width='65' 
+				        		width='40' 
 				        		publicId='error-icon_dqsgnx'
 						        version='1508212649'
 						        format='png'
