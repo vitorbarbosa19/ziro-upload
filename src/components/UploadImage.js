@@ -71,9 +71,6 @@ export default class UploadImage extends React.Component {
 						background-color: #303E4D !important;
 						border: 2px solid #303E4D !important;
 					}
-					.widget .panel.local .drag_area .drag_content {
-						margin-top: 70% !important;
-					}
 					.widget .powered_by_cloudinary {
 						display: none !important;
 					}
