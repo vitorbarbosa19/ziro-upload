@@ -27,7 +27,9 @@ const allBrands = [
   'Champagne',
   'Muse',
   'Doce Flor',
-  'Morina'
+  'Morina',
+  'Chocoleite',
+  'La Chocole'
 ]
 
 export default class UploadImage extends React.Component {
