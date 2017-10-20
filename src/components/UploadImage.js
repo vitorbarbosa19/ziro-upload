@@ -47,7 +47,8 @@ export default class UploadImage extends React.Component {
 		this.userUploadError = this.userUploadError.bind(this)
 		this.userUploadSuccess = this.userUploadSuccess.bind(this)
 	}
-	uploadImg() {
+	uploadImg(event) {
+		event.preventDefault() //prevents navigating to #
 		if(this.state.brand === 'Escolha uma marca' || this.state.brand === '')
 			alert('Escolha uma marca da lista')
 		else {

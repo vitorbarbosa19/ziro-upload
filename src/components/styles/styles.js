@@ -19,7 +19,7 @@ export const buttonStyle = {
 }
 
 export const inputStyle = {
-	'-webkit-appearance': 'none',
+	WebkitAppearance: 'none',
 	width: '80%',
 	textAlign: 'center',
 	textAlignLast: 'center',

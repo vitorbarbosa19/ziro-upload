@@ -24,6 +24,12 @@ a {
   left: -3000px !important;
 }
 
+/*-------Nav links decoration-------*/
+
+.nav-link-active {
+  border-bottom: 1px solid #fff;
+}
+
 /*************************/
 /*************************/
 

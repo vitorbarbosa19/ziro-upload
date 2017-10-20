@@ -1,9 +1,10 @@
 {
-  "name": "gatsby-starter-default",
-  "description": "Gatsby default starter",
+  "name": "ziro-upload",
+  "description": "Interface to upload images to serve client's galleries",
   "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Vitor Barbosa",
   "dependencies": {
+    "axios": "^0.16.2",
     "cloudinary-react": "^1.0.4",
     "gatsby": "^1.9.45",
     "gatsby-link": "^1.6.17",
@@ -11,7 +12,9 @@
     "gatsby-plugin-react-helmet": "^1.0.5"
   },
   "keywords": [
-    "gatsby"
+    "atacado",
+    "moda",
+    "bom retiro"
   ],
   "license": "MIT",
   "main": "n/a",
