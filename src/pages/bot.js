@@ -5,11 +5,6 @@ import InputNewBrand from '../components/InputNewBrand'
 import BrandList from '../components/BrandList'
 import { containerStyle, inputStyle } from '../components/styles/styles'
 
-if(document.domain !== 'localhost') {
-	document.domain = 'ziro.online'
-	console.log(document.domain)
-}
-
 export default class Bot extends React.Component {
 	constructor(props) {
 		super(props)
