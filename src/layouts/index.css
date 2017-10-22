@@ -6,6 +6,11 @@ a {
   color: #333;
 }
 
+ul {
+  list-style: none;
+  margin: 0 !important;
+}
+
 /*-------Upload success dialog animation-------*/
 
 .overlay-alert-active {
@@ -29,6 +34,15 @@ a {
 .nav-link-active {
   border-bottom: 1px solid #fff;
 }
+
+/*-------Number of photos input sizing-------*/
+
+.input-number-of-photos {
+  width: 26px !important;
+  height: 22px;
+  padding: 0 !important;
+}
+
 
 /*************************/
 /*************************/

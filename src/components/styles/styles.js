@@ -1,5 +1,4 @@
 export const containerStyle = {
-	height: '70vh',
 	display: 'flex',
 	flexDirection: 'column',
 	justifyContent: 'center',
@@ -20,16 +19,17 @@ export const buttonStyle = {
 
 export const inputStyle = {
 	WebkitAppearance: 'none',
-	width: '80%',
+	fontSize: '12px',
+	width: '200px',
 	textAlign: 'center',
 	textAlignLast: 'center',
-	marginBottom: '8px',
-	padding: '10px',
-	borderRadius: '0',
-	border: '2px solid rgba(48, 62, 77, 0.7)',
+	margin: '8px 0',
+	padding: '6px',
+	borderRadius: '2px',
+	border: '1px solid rgba(48, 62, 77, 0.9)',
 	zIndex: '0',
 	backgroundColor: '#fff',
-	color: 'rgba(48, 62, 77, 0.95)',
+	color: 'rgba(48, 62, 77, 0.75)',
 	boxShadow: '0px 2px 6px 0px rgba(0,0,0,0.1)'
 }
 

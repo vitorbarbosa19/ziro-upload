@@ -25,7 +25,7 @@ const Header = (props) => (
       <Image
         style={{margin: '0'}}
         cloudName='ziro' 
-        width='120' 
+        width='100' 
         publicId='logo-original_lork1u'
         version='1508000699'
         format='png'

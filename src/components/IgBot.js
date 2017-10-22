@@ -1,9 +1,7 @@
 import React from 'react'
 import axios from 'axios'
-import {
-	containerStyle,
-	buttonStyle
-} from './styles/styles'
+import { buttonStyle } from './styles/styles'
+import botApi from '../utils/botApi'
 
 export default class IgBot extends React.Component {
 	constructor(props) {
@@ -15,11 +13,11 @@ export default class IgBot extends React.Component {
 	}
 	fetchIgImages(event) {
 		event.preventDefault() //prevents navigation to #
-		axios.get(`https://zirobot.now.sh/?quantity=${4}&account_name=${'luziafazzollioficial'}`)
+		botApi.fetchImages(this.props.igAccounts, this.props.numberOfImagesToDownload)
 			.then( (response) => {
-				console.log(response.data)
+				console.log(response)
 				this.setState({
-					igImages: response.data
+					igImages: response
 				})
 			})
 			.catch( (error) => {
@@ -34,23 +32,27 @@ export default class IgBot extends React.Component {
 	}
 	render() {
 		return (
-			<div style={containerStyle}>
+			<div style={{marginBottom: '70px'}}>
 				<a 
 					style={buttonStyle} 
 					href='#'
 					onClick={this.fetchIgImages}>
-						Iniciar bot
+						Iniciar Bot
 				</a>
 				{this.state.igImages ?
-					this.state.igImages.map( (image, index) => (
-						<a 
-							className='autoClick'
-							style={{ visibility: 'hidden' }}
-							key={index}
-							href={image}
-							download={`ziromoda-${index}`}> {/*this property 'forces' the download of the image whose link is in the href property when the <a> tag is clicked */}
-						</a>
-					))
+					this.state.igImages.map( (brand) => {
+						return brand.map( (image, index) => {
+							return (
+								<a 
+									className='autoClick'
+									style={{ visibility: 'hidden' }}
+									key={index}
+									href={image}
+									download={`${image}-${index}.jpg`}> {/*this property 'forces' the download of the image whose link is in the href property when the <a> tag is clicked */}
+								</a>
+							)
+						})
+					})
 				:
 					null
 				}

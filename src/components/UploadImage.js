@@ -8,29 +8,7 @@ import {
 	overlayAlertDialog,
 	uploadAlertDialog
 } from './styles/styles'
-
-const allBrands = [
-  'Luzia Fazzolli',
-  'Di Collani',
-  'Unique Chic',
-  'Nuxx',
-  'Donna Ritz',
-  'Blessed',
-  'Innocense',
-  'Ave Rara',
-  'Karmani',
-  'Amissima',
-  'Lovlity',
-  'Linny',
-  'Hush',
-  'Loubucca',
-  'Champagne',
-  'Muse',
-  'Doce Flor',
-  'Morina',
-  'Chocoleite',
-  'La Chocole'
-]
+import { allBrandNames } from '../utils/allBrands'
 
 export default class UploadImage extends React.Component {
 	constructor(props) {
@@ -39,7 +17,7 @@ export default class UploadImage extends React.Component {
 			brand: '',
 			isImgModalOpen: false,
 			uploadSuccess: false,
-			defaultOption: 'Escolha uma marca',
+			defaultOption: 'Escolha uma marca...',
 			uploadMsg: ''
 		}
 		this.uploadImg = this.uploadImg.bind(this)
@@ -49,7 +27,7 @@ export default class UploadImage extends React.Component {
 	}
 	uploadImg(event) {
 		event.preventDefault() //prevents navigating to #
-		if(this.state.brand === 'Escolha uma marca' || this.state.brand === '')
+		if(this.state.brand === 'Escolha uma marca...' || this.state.brand === '')
 			alert('Escolha uma marca da lista')
 		else {
 			this.setState({
@@ -128,7 +106,7 @@ export default class UploadImage extends React.Component {
 	selectBrand(event) {
 		this.setState({
 			brand: event.target.value,
-			defaultOption: 'Escolha uma marca'
+			defaultOption: 'Escolha uma marca...'
 		})
 	}
 	render() {
@@ -136,9 +114,12 @@ export default class UploadImage extends React.Component {
 		  <span>
 		  	{this.state.isImgModalOpen ? <div className='main-container' style={containerStyle}><Spinner /></div> :
 		  		<div style={containerStyle}>
+			      <h1>Upload</h1>
+			      <p style={{textAlign: 'center', marginBottom: '40px'}}>Escolha uma marca da lista e faça o upload usando imagens salvas em seu dispositivo</p>
 			      <Image
+			      	style={{marginBottom: '0.45rem'}}
 			        cloudName='ziro'
-			        width='80' 
+			        width='45'
 			        publicId='upload-icon_wgq6yp'
 			        version='1507872043'
 			        format='png'
@@ -146,7 +127,7 @@ export default class UploadImage extends React.Component {
 			      />
 		  			<select style={inputStyle} onChange={this.selectBrand}>
 		  				<option>{this.state.defaultOption}</option>
-			  			{allBrands.sort().map( (brandName, index) => {
+			  			{allBrandNames.map( (brandName, index) => {
 			  				return (
 			  					<option
 			  						key={index}
@@ -156,7 +137,7 @@ export default class UploadImage extends React.Component {
 			  				)
 			  			})}
 		  			</select>
-		  			<a style={buttonStyle} href='#' onClick={this.uploadImg}>Iniciar upload de imagens</a>
+		  			<a style={buttonStyle} href='#' onClick={this.uploadImg}>Iniciar upload</a>
 		  			<div style={overlayAlertDialog} id='overlay-alert-dialog'>
 		  				<div style={uploadAlertDialog} id='text-alert-dialog'>
 			  				{this.state.uploadMsg === 'Upload realizado com sucesso!' ?	
