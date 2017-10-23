@@ -1,5 +1,6 @@
 import React from 'react'
 import { Image } from 'cloudinary-react'
+import Spinner from './Spinner'
 
 export default (props) => (
  	<ul>
@@ -9,13 +10,35 @@ export default (props) => (
  					key={index}
  					style={{
  						display: 'flex',
- 						justifyContent: 'space-between',
+ 						justifyContent: 'flex-end',
  						alignItems: 'center'
  					}}>
  						/{account}
+ 						{ props.loading ?
+ 							<Spinner
+ 								style={{
+	 								margin: '0 0 0 80px'
+	 							}}				 
+ 								width='14px'
+ 								height='14px'
+ 							/>
+ 						:
+	 						<Image
+	 							style={{
+	 								margin: '0 0 0 80px'
+	 							}}
+	 							onClick={props.fetchIgImages.bind(null, account)} //this syntax lets me bind the method to the value of the account
+								cloudName='ziro'
+		        		width='14' 
+		        		publicId='download-icon_nhqczk'
+				        version='1508716258'
+				        format='png'
+				        secure='true'	
+	 						/>
+ 						}
  						<Image
  							style={{
- 								marginLeft: '80px'
+ 								margin: '0 0 0 20px'
  							}}
  							onClick={props.removeAccount.bind(null, account)} //this syntax lets me bind the method to the value of the account
 							cloudName='ziro'

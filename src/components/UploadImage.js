@@ -114,17 +114,17 @@ export default class UploadImage extends React.Component {
 		  <span>
 		  	{this.state.isImgModalOpen ? <div className='main-container' style={containerStyle}><Spinner /></div> :
 		  		<div style={containerStyle}>
-			      <h1>Upload</h1>
-			      <p style={{textAlign: 'center', marginBottom: '40px'}}>Escolha uma marca da lista e faça o upload usando imagens salvas em seu dispositivo</p>
-			      <Image
-			      	style={{marginBottom: '0.45rem'}}
+		  			<Image
+			      	style={{marginBottom: '10px'}}
 			        cloudName='ziro'
-			        width='45'
-			        publicId='upload-icon_wgq6yp'
-			        version='1507872043'
+			        width='80'
+			        publicId='cloud-icon_vo0ruo'
+			        version='1508723944'
 			        format='png'
 			        secure='true'
 			      />
+			      <h1 style={{color: '#303e4d'}}>Upload</h1>
+			      <p style={{textAlign: 'center', marginBottom: '40px'}}>Escolha uma marca da lista e faça o upload usando imagens salvas em seu dispositivo</p>
 		  			<select style={inputStyle} onChange={this.selectBrand}>
 		  				<option>{this.state.defaultOption}</option>
 			  			{allBrandNames.map( (brandName, index) => {

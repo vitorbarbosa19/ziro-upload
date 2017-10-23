@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 
 export default {
-	fetchImages: (igAccountNames, numberOfImages) => {
+	fetchImagesManyAccounts: (igAccountNames, numberOfImages) => {
 		return axios.all( igAccountNames.map( (accountName) => {
 			return axios.get(`https://zirobot.now.sh/?quantity=${numberOfImages}&account_name=${accountName}`)
 				.then( (response) => {
@@ -15,4 +15,7 @@ export default {
 				})
 		}))
 	},
+	fetchImagesOneAccount: (igAccountName, numberOfImages) => {
+		return axios.get(`https://zirobot.now.sh/?quantity=${numberOfImages}&account_name=${igAccountName}`)
+	}
 }
