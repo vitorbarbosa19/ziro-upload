@@ -78,7 +78,27 @@ const arrayOfBrands = [
 	{
 		name: 'La Chocole',
 		ig_account: 'la_chocole'
-	}
+	},
+	{
+		name: 'Duplo Sentido',
+		ig_account: 'duplosentido_oficial'
+	},
+	{
+		name: 'Poema Hit',
+		ig_account: 'poemahitoficial'
+	},
+	{
+		name: 'Eva Bela',
+		ig_account: 'evabellaoficial'
+	},
+	{
+		name: 'Rock Lola',
+		ig_account: 'rocklola_'
+	},
+	{
+		name: 'Esmeral',
+		ig_account: 'esmeral_oficial'
+	},
 ]
 
 export const allBrandNames = arrayOfBrands.map( (brand) => {
