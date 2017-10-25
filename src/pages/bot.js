@@ -1,7 +1,6 @@
 import React from 'react'
 import axios from 'axios'
 import { Image } from 'cloudinary-react'
-import { allBrandAccounts } from '../utils/allBrands'
 import botApi from '../utils/botApi'
 import InputNewBrand from '../components/InputNewBrand'
 import BrandList from '../components/BrandList'
@@ -24,9 +23,9 @@ export default class Bot extends React.Component {
 		this.updateNumberOfImagesToDownload = this.updateNumberOfImagesToDownload.bind(this)
 		this.fetchIgImages = this.fetchIgImages.bind(this)
 	}
-	componentWillMount() {
+	componentDidMount() {
 		this.setState({
-			igAccounts: allBrandAccounts
+			igAccounts: this.props.allBrandAccounts
 		})
 	}
 	newAccount(event) {

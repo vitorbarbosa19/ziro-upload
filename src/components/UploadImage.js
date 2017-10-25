@@ -8,7 +8,6 @@ import {
 	overlayAlertDialog,
 	uploadAlertDialog
 } from './styles/styles'
-import { allBrandNames } from '../utils/allBrands'
 
 export default class UploadImage extends React.Component {
 	constructor(props) {
@@ -104,6 +103,7 @@ export default class UploadImage extends React.Component {
 		}
 	}
 	selectBrand(event) {
+		this.forceUpdate()
 		this.setState({
 			brand: event.target.value,
 			defaultOption: 'Escolha uma marca...'
@@ -127,15 +127,19 @@ export default class UploadImage extends React.Component {
 			      <p style={{textAlign: 'center', marginBottom: '40px'}}>Escolha uma marca da lista e faça o upload usando imagens salvas em seu dispositivo</p>
 		  			<select style={inputStyle} onChange={this.selectBrand}>
 		  				<option>{this.state.defaultOption}</option>
-			  			{allBrandNames.map( (brandName, index) => {
-			  				return (
-			  					<option
-			  						key={index}
-			  						value={brandName}
-			  						>{brandName}
-			  					</option>
-			  				)
-			  			})}
+			  			{this.props.allBrandNames ? 
+			  				this.props.allBrandNames.map( (brandName, index) => {
+				  				return (
+				  					<option
+				  						key={index}
+				  						value={brandName}
+				  						>{brandName}
+				  					</option>
+				  				)
+			  				})
+			  			:
+			  				null
+			  			}
 		  			</select>
 		  			<a style={buttonStyle} href='#' onClick={this.uploadImg}>Iniciar upload</a>
 		  			<div style={overlayAlertDialog} id='overlay-alert-dialog'>

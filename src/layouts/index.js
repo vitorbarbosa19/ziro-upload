@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
 import { Image } from 'cloudinary-react'
+import brandsApi from '../utils/brandsApi'
 
 import './index.css'
 
@@ -64,6 +65,27 @@ const Header = (props) => (
 )
 
 export default class TemplateWrapper extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      allBrandNames: null,
+      allBrandAccounts: null
+    }
+  }
+  componentDidMount() {
+    brandsApi.allBrandNamesAndAccounts()
+      .then( (response) => {
+        const namesAndAccounts = response.data.values.splice(1, response.data.values.length)
+        this.setState({
+          allBrandNames: namesAndAccounts.map((brand) => { return brand[0] }).sort(),
+          allBrandAccounts: namesAndAccounts.map((brand) => { return brand[1] }).sort()
+        })
+        console.log('IG Accounts:',this.state.allBrandNames)
+      })
+      .catch( (error) => {
+        console.log(error)
+      })
+  }
   render() {
     return (
       <div>
@@ -85,7 +107,11 @@ export default class TemplateWrapper extends React.Component {
             padding: '0px 1.0875rem 1.45rem',
             paddingTop: 0,
           }}>
-          {this.props.children({...this.props})}
+          {this.state.allBrandNames ?
+            this.props.children({...this.props, ...this.state})
+          :
+            null
+          }
         </div>
       </div>
     )
