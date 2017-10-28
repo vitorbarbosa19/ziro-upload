@@ -4,6 +4,7 @@ import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
 import { Image } from 'cloudinary-react'
 import brandsApi from '../utils/brandsApi'
+import Spinner from '../components/Spinner'
 
 import './index.css'
 
@@ -49,7 +50,7 @@ const Header = (props) => (
           Upload
         </Link>
         <Link
-          className={props.route === '/bot' ? 'nav-link-active' : null}
+          className={props.route === '/bot' || props.route === '/bot/' ? 'nav-link-active' : null}
           to="/bot" 
           style={{
             color: '#fff',
@@ -110,7 +111,7 @@ export default class TemplateWrapper extends React.Component {
           {this.state.allBrandNames ?
             this.props.children({...this.props, ...this.state})
           :
-            null
+            <Spinner />
           }
         </div>
       </div>
