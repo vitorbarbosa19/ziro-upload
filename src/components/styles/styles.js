@@ -52,7 +52,7 @@ export const uploadAlertDialog = {
 	flexDirection: 'column',
 	alignItems: 'center',
 	position: 'absolute',
-	top: '45%',
+	top: '35%',
 	zIndex: '1',
 	padding: '30px',
   borderRadius: '3px',
