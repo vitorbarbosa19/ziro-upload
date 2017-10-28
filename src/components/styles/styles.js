@@ -34,7 +34,6 @@ export const inputStyle = {
 }
 
 export const overlayAlertDialog = {
-	maxWidth: '400px',
 	pointerEvents: 'none', //makes the elements below this div clickable
 	display: 'flex',
 	justifyContent: 'center',
