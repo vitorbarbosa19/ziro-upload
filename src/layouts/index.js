@@ -104,9 +104,10 @@ export default class TemplateWrapper extends React.Component {
         <div
           style={{
             margin: '0 auto',
-            maxWidth: 400,
+            maxWidth: '400',
             padding: '0px 1.0875rem 1.45rem',
-            paddingTop: 0,
+            paddingTop: '0',
+            textAlign: 'center'
           }}>
           {this.state.allBrandNames ?
             this.props.children({...this.props, ...this.state})
