@@ -34,6 +34,7 @@ export const inputStyle = {
 }
 
 export const overlayAlertDialog = {
+	maxWidth: '400px',
 	pointerEvents: 'none', //makes the elements below this div clickable
 	display: 'flex',
 	justifyContent: 'center',
@@ -52,9 +53,7 @@ export const uploadAlertDialog = {
 	flexDirection: 'column',
 	alignItems: 'center',
 	position: 'absolute',
-	top: '50%',
-	left: '0',
-	margin: '-127px 30px 0', //half the size of the element, after including borders and padding
+	top: '45%',
 	zIndex: '1',
 	padding: '30px',
   borderRadius: '3px',

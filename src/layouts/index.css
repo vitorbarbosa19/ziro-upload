@@ -22,11 +22,11 @@ ul {
 }
 
 .text-alert-active {
-  left: 0 !important;
+  top: 45% !important;
 }
 
 .text-alert-inactive {
-  left: -3000px !important;
+  top: -3000px !important;
 }
 
 /*-------Nav links decoration-------*/
