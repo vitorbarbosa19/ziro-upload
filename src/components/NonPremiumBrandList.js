@@ -4,17 +4,24 @@ import Spinner from './Spinner'
 
 export default (props) => (
  	<ul>
- 		{props.allIgAccounts ?
- 			props.allIgAccounts.map( (account, index) => {
+ 		<h2 style={{marginTop: '30px'}}>Demais Marcas</h2>
+ 		{props.igNonPremiumAccounts ?
+ 			props.igNonPremiumAccounts.map( (account, index) => {
 	 			return (
 	 				<li
 	 					key={index}
 	 					style={{
 	 						display: 'flex',
-	 						justifyContent: 'flex-end',
+
 	 						alignItems: 'center'
 	 					}}>
-	 						/{account}
+	 						<div
+	 							style={{
+	 								width: '70%',
+	 								textAlign: 'left'
+	 							}}>
+	 								/{account}
+	 						</div>
 	 						{ props.loading ?
 	 							<Spinner
 	 								style={{

@@ -18,7 +18,7 @@ const Header = (props) => (
     <div
       style={{
         margin: '0 auto',
-        maxWidth: 400,
+        maxWidth: '400px',
         padding: '1.45rem 1.0875rem',
         display: 'flex',
         justifyContent: 'space-between',
@@ -27,7 +27,7 @@ const Header = (props) => (
       <Image
         style={{margin: '0'}}
         cloudName='ziro' 
-        width='100' 
+        width='100px' 
         publicId='logo-original_lork1u'
         version='1508000699'
         format='png'
@@ -70,18 +70,47 @@ export default class TemplateWrapper extends React.Component {
     super(props)
     this.state = {
       allBrandNames: null,
-      allBrandAccounts: null
+      allBrandAccounts: null,
+      onlyPremiumBrandNames: null,
+      onlyPremiumBrandAccounts: null,
+      onlyNonPremiumBrandNames: null,
+      onlyNonPremiumBrandAccounts: null,
     }
   }
   componentDidMount() {
     brandsApi.allBrandNamesAndAccounts()
       .then( (response) => {
-        const namesAndAccounts = response.data.values.splice(1, response.data.values.length)
-        this.setState({
-          allBrandNames: namesAndAccounts.map((brand) => { return brand[0] }).sort(),
-          allBrandAccounts: namesAndAccounts.map((brand) => { return brand[1] }).sort()
+        const allBrandNamesAndAccounts = []
+        const allPremium = []
+        const allNonPremium = []
+        response.data.values.splice(1, response.data.values.length).map( (brand) => {
+          if(brand[2] === 'Diaria')
+            allPremium.push( [brand[0], brand[1]] )
+          if(brand[2] === 'Semanal')
+            allNonPremium.push( [brand[0], brand[1]] )
+          allBrandNamesAndAccounts.push( [brand[0], brand[1]] )
         })
-        console.log('IG Accounts:',this.state.allBrandNames)
+        this.setState({
+          allBrandNames: allBrandNamesAndAccounts.map ( (brand) => {
+            return brand[0]
+          }).sort(),
+          allBrandAccounts: allBrandNamesAndAccounts.map ( (brand) => {
+            return brand[1]
+          }).sort(),
+          onlyPremiumBrandNames: allPremium.map( (brand) => { 
+            return brand[0]
+          }).sort(),
+          onlyPremiumBrandAccounts: allPremium.map( (brand) => {
+            return brand[1]
+          }).sort(),
+          onlyNonPremiumBrandNames: allNonPremium.map( (brand) => { 
+            return brand[0]
+          }).sort(),
+          onlyNonPremiumBrandAccounts: allNonPremium.map( (brand) => {
+            return brand[1]
+          }).sort()
+        })
+        console.log('Brands Info:', this.state)
       })
       .catch( (error) => {
         console.log(error)
@@ -104,7 +133,7 @@ export default class TemplateWrapper extends React.Component {
         <div
           style={{
             margin: '0 auto',
-            maxWidth: '400',
+            maxWidth: '400px',
             padding: '0px 1.0875rem 1.45rem',
             paddingTop: '0',
             textAlign: 'center'

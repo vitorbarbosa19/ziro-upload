@@ -1,16 +1,19 @@
 import React from 'react'
 import axios from 'axios'
-import { Image } from 'cloudinary-react'
 import botApi from '../utils/botApi'
 import InputNewBrand from '../components/InputNewBrand'
 import BrandList from '../components/BrandList'
-import { containerStyle, inputStyle } from '../components/styles/styles'
+import PremiumBrandList from '../components/PremiumBrandList'
+import NonPremiumBrandList from '../components/NonPremiumBrandList'
+import UserInfo from '../components/UserInfo'
+import { containerStyle } from '../components/styles/styles'
 
 export default class Bot extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			igAccounts: null,
+			igPremiumAccounts: null,
+			igNonPremiumAccounts: null,
 			newAccountName: '',
 			numberOfImagesToDownload: 5,
 			igImages: null,
@@ -25,7 +28,9 @@ export default class Bot extends React.Component {
 	}
 	componentDidMount() {
 		this.setState({
-			igAccounts: this.props.allBrandAccounts
+			allIgAccounts: this.props.allBrandAccounts,
+			igPremiumAccounts: this.props.onlyPremiumBrandAccounts,
+			igNonPremiumAccounts: this.props.onlyNonPremiumBrandAccounts
 		})
 	}
 	newAccount(event) {
@@ -35,12 +40,12 @@ export default class Bot extends React.Component {
 	}
 	saveNewAccount() {
 		this.setState( (prevState) => {
-			igAccounts: prevState.igAccounts.splice(0, 0, this.state.newAccountName)
+			allIgAccounts: prevState.allIgAccounts.splice(0, 0, this.state.newAccountName)
 		})
 	}
 	removeAccount(accountName) {
 		this.setState( (prevState) => {
-			igAccounts: prevState.igAccounts.splice(prevState.igAccounts.indexOf(accountName), 1)
+			allIgAccounts: prevState.allIgAccounts.splice(prevState.allIgAccounts.indexOf(accountName), 1)
 		})
 	}
 	updateNumberOfImagesToDownload(event) {
@@ -79,18 +84,7 @@ export default class Bot extends React.Component {
 	}
 	render() {
 		return (
-			<div style={containerStyle}>
-				<Image
-					style={{
-						margin: '0 auto 10px'
-					}}
-					cloudName='ziro'
-    			width='80' 
-    			publicId='bot-icon_mql5c1'
-        	version='1508723946'
-        	format='png'
-        	secure='true'	
-				/>				
+			<div style={containerStyle}>		
 				{this.state.igImages ?
 					this.state.igImages.map( (image, index) => {
 						return (
@@ -106,27 +100,33 @@ export default class Bot extends React.Component {
 				:
 					null
 				}
-				<h1 style={{color: '#303e4d'}}>Bot</h1>
-				<p style={{textAlign: 'center'}}>Adicione ou remova uma marca da lista. Para cada marca, o Bot irá baixar um total de&nbsp;
-					<input 
-						className='input-number-of-photos'
-						style={inputStyle}
-						type='text'
-						value={this.state.numberOfImagesToDownload}
-						onChange={this.updateNumberOfImagesToDownload}
-					/> foto(s)
-				</p>
-				<InputNewBrand 
-					newAccountName={this.state.newAccountName} 
-					saveNewAccount={this.saveNewAccount} 
-					newAccount={this.newAccount}
+				<UserInfo 
+					numberOfImagesToDownload={this.state.numberOfImagesToDownload}
+					updateNumberOfImagesToDownload={this.updateNumberOfImagesToDownload}
 				/>
-				<BrandList 
-					igAccounts={this.state.igAccounts} 
+				<PremiumBrandList
+					igPremiumAccounts={this.state.igPremiumAccounts}
+					removeAccount={this.removeAccount}
+					fetchIgImages={this.fetchIgImages}
+					loading={this.state.loading}					
+				/>
+				<NonPremiumBrandList
+					igNonPremiumAccounts={this.state.igNonPremiumAccounts}
+					removeAccount={this.removeAccount}
+					fetchIgImages={this.fetchIgImages}
+					loading={this.state.loading}					
+				/>
+				{/*<BrandList 
+					allIgAccounts={this.state.allIgAccounts} 
 					removeAccount={this.removeAccount}
 					fetchIgImages={this.fetchIgImages}
 					loading={this.state.loading}
 				/>
+				<InputNewBrand 
+					newAccountName={this.state.newAccountName} 
+					saveNewAccount={this.saveNewAccount} 
+					newAccount={this.newAccount}
+				/>*/}
 			</div>
 		)
 	}
