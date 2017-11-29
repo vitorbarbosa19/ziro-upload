@@ -104,7 +104,7 @@ export default class Bot extends React.Component {
 					numberOfImagesToDownload={this.state.numberOfImagesToDownload}
 					updateNumberOfImagesToDownload={this.updateNumberOfImagesToDownload}
 				/>
-				<PremiumBrandList
+				{/*<PremiumBrandList
 					igPremiumAccounts={this.state.igPremiumAccounts}
 					removeAccount={this.removeAccount}
 					fetchIgImages={this.fetchIgImages}
@@ -116,7 +116,7 @@ export default class Bot extends React.Component {
 					fetchIgImages={this.fetchIgImages}
 					loading={this.state.loading}					
 				/>
-				{/*<BrandList 
+				<BrandList 
 					allIgAccounts={this.state.allIgAccounts} 
 					removeAccount={this.removeAccount}
 					fetchIgImages={this.fetchIgImages}
