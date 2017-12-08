@@ -49,17 +49,6 @@ const Header = (props) => (
           }}>
           Upload
         </Link>
-        <Link
-          className={props.route === '/bot' || props.route === '/bot/' ? 'nav-link-active' : null}
-          to="/bot" 
-          style={{
-            color: '#fff',
-            fontFamily: 'karla',
-            paddingTop: '8px',
-            paddingBottom: '8px'
-          }}>
-          Bot
-        </Link>
       </div>
     </div>
   </div>
