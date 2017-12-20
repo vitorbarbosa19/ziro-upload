@@ -9,7 +9,7 @@ export const containerStyle = {
 
 export const buttonStyle = {
 	fontSize: '13px',
-	padding: '12px 30px',
+	padding: '8px 20px',
 	borderRadius: '25px',
 	backgroundColor: '#303e4d',
 	color: '#fff',
@@ -23,7 +23,7 @@ export const inputStyle = {
 	width: '200px',
 	textAlign: 'center',
 	textAlignLast: 'center',
-	margin: '8px 0',
+	margin: '0 0 8px 0',
 	padding: '6px',
 	borderRadius: '2px',
 	border: '1px solid rgba(48, 62, 77, 0.9)',

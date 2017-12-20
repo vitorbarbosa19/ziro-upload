@@ -27,7 +27,7 @@ const Header = (props) => (
       <Image
         style={{margin: '0'}}
         cloudName='ziro' 
-        width='100px' 
+        width='85px' 
         publicId='logo-original_lork1u'
         version='1508000699'
         format='png'
@@ -36,6 +36,7 @@ const Header = (props) => (
       <div
         style={{
           display: 'flex',
+          fontSize: '14px'
         }}>
         <Link
           className={props.route === '/' ? 'nav-link-active' : null}
@@ -47,7 +48,19 @@ const Header = (props) => (
             paddingTop: '8px',
             paddingBottom: '8px'
           }}>
-          Upload
+          Individual
+        </Link>
+        <Link
+          className={props.route === '/' ? 'nav-link-active' : null}
+          to="/" 
+          style={{
+            color: '#fff',
+            fontFamily: 'karla',
+            marginRight: '30px',
+            paddingTop: '8px',
+            paddingBottom: '8px'
+          }}>
+          Múltiplo
         </Link>
       </div>
     </div>

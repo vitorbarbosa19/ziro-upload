@@ -123,8 +123,8 @@ export default class UploadImage extends React.Component {
 			        format='png'
 			        secure='true'
 			      />
-			      <h1 style={{color: '#303e4d'}}>Upload</h1>
-			      <p style={{textAlign: 'center', marginBottom: '40px'}}>Escolha uma marca da lista e faça o upload usando imagens salvas em seu dispositivo</p>
+			      <h1 style={{color: '#303e4d', fontSize: '26px', marginBottom: '20px'}}>Upload Individual</h1>
+			      <p style={{textAlign: 'center', marginBottom: '20px'}}>Escolha uma marca da lista e faça o upload usando imagens salvas em seu dispositivo</p>
 		  			<select style={inputStyle} onChange={this.selectBrand}>
 		  				<option>{this.state.defaultOption}</option>
 			  			{this.props.allBrandNames ? 
