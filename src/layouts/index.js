@@ -21,7 +21,7 @@ const Header = (props) => (
         maxWidth: '400px',
         padding: '1.45rem 1.0875rem',
         display: 'flex',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         alignItems: 'center'
       }}>
       <Image
@@ -33,36 +33,6 @@ const Header = (props) => (
         format='png'
         secure='true'
       />
-      <div
-        style={{
-          display: 'flex',
-          fontSize: '14px'
-        }}>
-        <Link
-          className={props.route === '/' ? 'nav-link-active' : null}
-          to="/" 
-          style={{
-            color: '#fff',
-            fontFamily: 'karla',
-            marginRight: '30px',
-            paddingTop: '8px',
-            paddingBottom: '8px'
-          }}>
-          Individual
-        </Link>
-        <Link
-          className={props.route === '/' ? 'nav-link-active' : null}
-          to="/" 
-          style={{
-            color: '#fff',
-            fontFamily: 'karla',
-            marginRight: '30px',
-            paddingTop: '8px',
-            paddingBottom: '8px'
-          }}>
-          Múltiplo
-        </Link>
-      </div>
     </div>
   </div>
 )
