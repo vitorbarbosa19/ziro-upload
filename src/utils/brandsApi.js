@@ -3,6 +3,6 @@ import axios from 'axios'
 
 export default {
 	allBrandNamesAndAccounts: () => {
-		return axios.get('https://zirodata.now.sh?type=fornecedores')
+		return axios.get('https://ziro-data.now.sh?type=fornecedores')
 	}
 }
