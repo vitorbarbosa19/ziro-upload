@@ -100,6 +100,11 @@ export default class TemplateWrapper extends React.Component {
           script={[
             { src: '//widget.cloudinary.com/global/all.js', type: 'text/javascript' }
           ]}
+          link={[
+            { rel: 'shortcut icon' },
+            { href: 'https://res.cloudinary.com/ziro/image/upload/v1508000699/logo-round_kxn8sa.png' },
+            { type: 'image/x-icon' }
+          ]}
         />
         <Header route={this.props.location.pathname}/>
         <div
